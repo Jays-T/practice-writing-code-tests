@@ -1,3 +1,2 @@
-/lanthus_clark/__pycache__/
-/todo/__pycache__/
-/lanthus_clark/settings.py
+*.sqlite3
+__pycache__/
