@@ -1,2 +1,1 @@
-Welcome to Lanthus Clark Photography - The Photophile and Photography Philosophy
-
+A simple todo list based on a tutorial
