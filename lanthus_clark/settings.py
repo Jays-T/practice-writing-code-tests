@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 import dj_database_url
 
+development = os.environ.get('DEVELOPMENT', False)
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -21,12 +23,15 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '=w0xo_yggutk0oz^hi^q41u5n#13zy1$+e%3zs^)lozkukgzp-'
+SECRET_KEY = os.environ.get('SECRET_KEY', '=w0xo_yggutk0oz^hi^q41u5n#13zy1$+e%3zs^)lozkukgzp-')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = development
 
-ALLOWED_HOSTS = ['jays-ci-django-todo-app.herokuapp.com']
+if development:
+    ALLOWED_HOSTS = ['localhost']
+else:
+    ALLOWED_HOSTS = [os.environ.get('HEROKU_HOSTNAME')]
 
 
 # Application definition
@@ -75,17 +80,17 @@ WSGI_APPLICATION = 'lanthus_clark.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
-
-
-DATABASES = {
-    'default': dj_database_url.parse('postgres://ngniirannfijxw:3e74ada6352c2727ccec69e0f9c8102c29da51456ea437fddee70a80ffd8fc3a@ec2-54-246-115-40.eu-west-1.compute.amazonaws.com:5432/d8a1akhdmgc55d')
-}
+if development:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
+else:
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+    }
 
 
 # Password validation

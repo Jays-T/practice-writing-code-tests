@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ToDo List</title>
+    <title>To Do List</title>
   </head>
   <body>
     <h1>Things I need to do</h1>
@@ -34,10 +34,13 @@
       </tr>
       {% empty %}
       <tr>
-        <td>You have nothing to do. Go on, live it up! Indulge yourself!</td>
+        <td>
+          You have nothing to do. Go on, live it up! Indulge yourself!
+        </td>
       </tr>
       {% endfor %}
     </table>
+
     <a href="/add">Add an Item</a>
   </body>
 </html>
