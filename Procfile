@@ -1,1 +1,1 @@
-web: gunicorn todo.wsgi:application
+web: gunicorn lanthus_clark.wsgi:application
