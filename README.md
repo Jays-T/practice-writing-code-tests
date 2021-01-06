@@ -1,1 +1,1 @@
-A simple todo list based on a tutorial
+A simple todo list based on a tutorial + code tests
